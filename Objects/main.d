@@ -30,9 +30,9 @@
 .\objects\main.o: .\Library\misc.h
 .\objects\main.o: .\System\Delay.h
 .\objects\main.o: .\Hardware\LED.h
-.\objects\main.o: .\Hardware\lian2.h
-.\objects\main.o: E:\Keil_v5\UV4\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\main.o: E:\Keil_v5\UV4\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\main.o: .\Hardware\Key.h
 .\objects\main.o: .\Hardware\OLED.h
 .\objects\main.o: .\System\Timer.h
+.\objects\main.o: .\Hardware\lian2.h
+.\objects\main.o: E:\Keil_v5\UV4\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: E:\Keil_v5\UV4\ARM\ARMCC\Bin\..\include\stdlib.h

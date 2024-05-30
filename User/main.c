@@ -1,10 +1,11 @@
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
 #include "LED.h"
-#include "lian2.h"
 #include "Key.h"
 #include "OLED.h"
 #include "Timer.h"
+#include "lian2.h"
+
 #define pr(x) pr->x
 
 uint8_t Key_list,Key_naxt,KeyDeta;
@@ -36,7 +37,14 @@ int main(void)
 	line_tail(l1,1,menu_light);
 	line_tail(l1,2,menu_electrical);
 	line_tail(l1,3,menu_temperature);
-	menu(l1);	
+	menu(l1);
+	mn*l2 =menu_Init();
+	line* pz = l1->next;
+	menu_tail(l2, pz, 1, 1);
+	pz = pz->next;
+	menu_tail(l2, pz, 2, 2);
+	pz = pz->next;
+	menu_tail(l2, pz, 3, 3);	
 	line* pr  = l1->next;
 	OLED_ShowCharsentbright(pr->data,1,pr->line,4);
 	while (1)
