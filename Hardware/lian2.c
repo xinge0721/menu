@@ -56,3 +56,7 @@ void menu_tail_t(line* pr, line* li, int x, int y)
 	(pr->prior)->next = ps;
 	pr->prior = (pr->prior)->next;
 }
+
+
+
+

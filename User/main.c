@@ -8,7 +8,7 @@
 
 
 
-uint8_t Key_list,Key_naxt,KeyDeta;
+uint8_t Key_list,Key_naxt,KeyDeta,swap;
 typedef enum
 {
 	menu_light = 1,
@@ -39,12 +39,12 @@ int main(void)
 	line_tail(l1,3,menu_temperature);
 	
 	menu(l1);					//将菜单打印在屏幕上
-	line* pz = l1->next;
+	line* pz = l1->next;		//将菜单的开关灯位付给pr
 
 	line* l2 = line_Init();		//初始化开灯的功能链表
 
-	menu_tail(l2, pz, 1, 1);	//连接功能与菜单
-	menu_tail_t(l2, pz, 1, 2);
+	menu_tail(l2, pz, 1, 13);	//连接功能与菜单的哨兵位
+	menu_tail_t(l2, pz, 2, 17); //创建正真的功能位，且对应的菜单位不与他的产生联系
 
 	pz = pz->next;
 
@@ -88,7 +88,7 @@ int main(void)
 			Delay_ms(100);							//暂停一会，以防出错
 			KeyDeta = 0;							//将按键标志位清零防止出现反复执行的情况
 			break;
-		case 2:										//原来相同但这是向上的
+		case 2:										//和case 1相同但这是向上的
 			if (pr->prior == pt )
 				{					
 					OLED_ShowCharsent(pr->data,1,pr->line,4);
@@ -107,11 +107,19 @@ int main(void)
 			}
 			KeyDeta = 0;
 			break;
-		case 3:
-			pr = pr->up;
-			menu(pr);
-			KeyDeta = 0;
-			break;
+		case 3:					//界面切换
+			if(!swap)
+				pt = (pr->up) -> prior;
+			else
+				pt = l1;
+			
+				pr = pr->up;		//将转换指针付给pr，则此时pr将指向功能菜单，反之亦然
+				OLED_Clear();		//清空屏幕防止菜单界面或者功能界面互相干扰
+				menu(pt);			//重新打印新界面
+				OLED_ShowCharsentbright(pr->data,1,pr->line,4);		//提前将菜单第一列高亮
+				KeyDeta = 0;		//将按键标志位清零防止出现反复执行的情况
+				break;
+			
 
 		}
 	}
