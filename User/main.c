@@ -8,7 +8,7 @@
 
 
 
-uint8_t Key_list,Key_naxt,KeyDeta,swap;
+uint8_t Key_list,Key_naxt,KeyDeta,swap,speed,mood;
 typedef enum
 {									//各个字符对应的行号
 	menu_light = 1,				 	//亮灯灭灯
@@ -79,67 +79,93 @@ int main(void)
 
 	while (1)
 	{
-	switch (KeyDeta)		//检测按键是否被按下
-	{
-		case 1:				//如果是按键一，就向下滚动
-			if (pr->next == pt )//如果指针的下一位是哨兵位则进入条件内
-				{					
-					OLED_ShowCharsent(pr->data,1,pr->line,4);//将该行的高亮恢复
-					pr = pr->next ->next;					 //连走两次next，绕过哨兵位
-					OLED_ShowCharsentbright(pr->data,1,pr->line,4);//将第一行高亮
+		switch (KeyDeta)		//检测按键是否被按下
+		{
+			case 1:				//如果是按键一，就向下滚动
+				if (pr->next == pt )//如果指针的下一位是哨兵位则进入条件内
+					{
+						mood = 1;
+						OLED_ShowCharsent(pr->data,1,pr->line,4);//将该行的高亮恢复
+						pr = pr->next ->next;					 //连走两次next，绕过哨兵位
+						OLED_ShowCharsentbright(pr->data,1,pr->line,4);//将第一行高亮
+					}
+				else			//如果指针没有指向哨兵位，则一切正常，正常的到下一位
+				{
+					ps = pr;
+					pr = pr->next;
+					OLED_ShowCharsentbright(pr->data,1,pr->line,4);	//将该行的高亮恢复
+					OLED_ShowCharsent(ps->data,1,ps->line,4);		//下一行高亮
+					mood++;
 				}
-			else			//如果指针没有指向哨兵位，则一切正常，正常的到下一位
-			{
-			    ps = pr;
-				pr = pr->next;
-				OLED_ShowCharsentbright(pr->data,1,pr->line,4);	//将该行的高亮恢复
-				OLED_ShowCharsent(ps->data,1,ps->line,4);		//下一行高亮
-			}
-			Delay_ms(100);							//暂停一会，以防出错
-			KeyDeta = 0;							//将按键标志位清零防止出现反复执行的情况
-			break;
-		case 2:										//和case 1相同但这是向上的
-			if (pr->prior == pt )
-				{					
-					OLED_ShowCharsent(pr->data,1,pr->line,4);
-					
-					pr = pr->prior ->prior;
+				Delay_ms(100);							//暂停一会，以防出错
+				KeyDeta = 0;							//将按键标志位清零防止出现反复执行的情况
+				break;
+			case 2:										//和case 1相同但这是向上的
+				if (pr->prior == pt )
+					{	
+						mood = 3;
+						OLED_ShowCharsent(pr->data,1,pr->line,4);
+						pr = pr->prior ->prior;
+						OLED_ShowCharsentbright(pr->data,1,pr->line,4);
+						Delay_ms(100);
+					}
+				else
+				{
+					mood--;
+					ps = pr;
+					pr = pr->prior;
 					OLED_ShowCharsentbright(pr->data,1,pr->line,4);
+					OLED_ShowCharsent(ps->data,1,ps->line,4);
 					Delay_ms(100);
 				}
-			else
-			{
-				ps = pr;
-				pr = pr->prior;
-				OLED_ShowCharsentbright(pr->data,1,pr->line,4);
-				OLED_ShowCharsent(ps->data,1,ps->line,4);
-				Delay_ms(100);
-			}
-			KeyDeta = 0;
-			break;
-		case 3:					//界面切换
-			if(!swap)		
-			{
-				pt = (pr->up) -> prior;
-				swap++;
-			}
-			else
-			{
-				pt = l1;
-				swap--;
-			}
-			
+				KeyDeta = 0;
+				break;
+			case 3:					//界面切换
+				if(!swap)		
+				{
+					pt = (pr->up) -> prior;
+					swap = 1;
+				}
+				else
+				{
+					pt = l1;
+					swap = 0;
+				}
+				speed = 0;			//将speed清零，防止加多	
 				pr = pr->up;		//将转换指针付给pr，则此时pr将指向功能菜单，反之亦然
 				OLED_Clear();		//清空屏幕防止菜单界面或者功能界面互相干扰
 				menu(pt);			//重新打印新界面
 				OLED_ShowCharsentbright(pr->data,1,pr->line,4);		//提前将菜单第一列高亮
 				KeyDeta = 0;		//将按键标志位清零防止出现反复执行的情况
 				break;
-		case 4:
-			OLED_ShowCharsentbright(pr->data,4,pr->line,4);		//提前将菜单第一列高亮
-			break;
+			case 4:
+				if(swap)
+				{
+					if(speed == 100)
+						speed = 0;
+					speed += 25;
+				}
+		break;
+		}
+		if(swap == 1)
+		{
+			if(mood == 1)
+			{
+				OLED_Clear();		//清空屏幕防止菜单界面或者功能界面互相干扰
+			}
+			else if (mood == 2)
+			{
+				OLED_Clear();		//清空屏幕防止菜单界面或者功能界面互相干扰
+			}
+			else if (mood == 3)
+			{
+				OLED_Clear();		//清空屏幕防止菜单界面或者功能界面互相干扰
+			}
 		}
 	}
+	
+
+
 }
 void TIM2_IRQHandler(void)
 {	if (TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)//1ms
