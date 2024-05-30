@@ -215,3 +215,6 @@ void OLED_ShowCharsentbright(uint8_t x,uint8_t y,uint8_t Char,uint8_t data)
 		OLED_ShowCharbright(x,y++,Char++);
 	}
 }
+
+
+

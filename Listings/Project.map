@@ -816,7 +816,7 @@ Image Symbol Table
     i.menu                                   0x08000d80   Section        0  main.o(i.menu)
     i.menu_tail                              0x08000d9c   Section        0  lian2.o(i.menu_tail)
     i.menu_tail_t                            0x08000dd2   Section        0  lian2.o(i.menu_tail_t)
-    .constdata                               0x08000e08   Section     2688  oled.o(.constdata)
+    .constdata                               0x08000e08   Section     3712  oled.o(.constdata)
     .data                                    0x20000000   Section        2  key.o(.data)
     KeyFlag                                  0x20000001   Data           1  key.o(.data)
     .data                                    0x20000002   Section        5  main.o(.data)
@@ -944,9 +944,9 @@ Image Symbol Table
     menu                                     0x08000d81   Thumb Code    28  main.o(i.menu)
     menu_tail                                0x08000d9d   Thumb Code    54  lian2.o(i.menu_tail)
     menu_tail_t                              0x08000dd3   Thumb Code    52  lian2.o(i.menu_tail_t)
-    OLED_F8x16                               0x08000e08   Data        2688  oled.o(.constdata)
-    Region$$Table$$Base                      0x08001888   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080018a8   Number         0  anon$$obj.o(Region$$Table)
+    OLED_F8x16                               0x08000e08   Data        3712  oled.o(.constdata)
+    Region$$Table$$Base                      0x08001c88   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08001ca8   Number         0  anon$$obj.o(Region$$Table)
     KeyState                                 0x20000000   Data           1  key.o(.data)
     Key_list                                 0x20000002   Data           1  main.o(.data)
     Key_naxt                                 0x20000003   Data           1  main.o(.data)
@@ -967,9 +967,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000018b8, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001cb8, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000018a8, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00001ca8, Max: 0x00010000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1044,8 +1044,8 @@ Memory Map of the image
     0x08000d9c   0x00000036   Code   RO         3394    i.menu_tail         lian2.o
     0x08000dd2   0x00000034   Code   RO         3395    i.menu_tail_t       lian2.o
     0x08000e06   0x00000002   PAD
-    0x08000e08   0x00000a80   Data   RO         3320    .constdata          oled.o
-    0x08001888   0x00000020   Data   RO         3596    Region$$Table       anon$$obj.o
+    0x08000e08   0x00000e80   Data   RO         3320    .constdata          oled.o
+    0x08001c88   0x00000020   Data   RO         3596    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00000610, Max: 0x00005000, ABSOLUTE)
@@ -1072,9 +1072,9 @@ Image component sizes
         70          0          0          0          0        834   delay.o
        228         20          0          2          0       2739   key.o
        178          0          0          0          0       2798   lian2.o
-       504         18          0          5          0       2661   main.o
+       504         18          0          5          0       2841   main.o
        132         22          0          0          0     204527   misc.o
-       908         28       2688          0          0       6574   oled.o
+       908         28       3712          0          0       6574   oled.o
         36          8        236          0       1536        772   startup_stm32f10x_md.o
          0          0          0          0          0       1612   stm32f10x_adc.o
        288          0          0          0          0      10564   stm32f10x_gpio.o
@@ -1085,7 +1085,7 @@ Image component sizes
        124          0          0          0          0        505   timer.o
 
     ----------------------------------------------------------------------
-      3162        178       2956          8       1536     296827   Object Totals
+      3162        178       3980          8       1536     297007   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         12          0          0          1          0          0   (incl. Padding)
 
@@ -1126,15 +1126,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3356        210       2956         16       1536     294791   Grand Totals
-      3356        210       2956         16       1536     294791   ELF Image Totals
-      3356        210       2956         16          0          0   ROM Totals
+      3356        210       3980         16       1536     294971   Grand Totals
+      3356        210       3980         16       1536     294971   ELF Image Totals
+      3356        210       3980         16          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 6312 (   6.16kB)
+    Total RO  Size (Code + RO Data)                 7336 (   7.16kB)
     Total RW  Size (RW Data + ZI Data)              1552 (   1.52kB)
-    Total ROM Size (Code + RO Data + RW Data)       6328 (   6.18kB)
+    Total ROM Size (Code + RO Data + RW Data)       7352 (   7.18kB)
 
 ==============================================================================
 

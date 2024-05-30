@@ -10,13 +10,24 @@
 
 uint8_t Key_list,Key_naxt,KeyDeta,swap;
 typedef enum
-{
-	menu_light = 1,
-	menu_electrical = 5,
-	menu_temperature = 9
+{									//各个字符对应的行号
+	menu_light = 1,				 	//亮灯灭灯
+	menu_electrical = 5,			//电机控制
+	menu_temperature = 9,			//温度控制
+	menu_light_green = 13,			//绿灯：
+	menu_light_red   = 17,			//红灯：
+	menu_electrical_switch = 21,	//开机：
+	menu_electrical_speed  = 25,	//转速：
 }word;
 
+typedef enum 
+{
+	first_line    = 1,  //第一行
+	second_line   = 2,	//第二行
+	thirdly_line  = 3,  //第三行
+	fourthly_line = 4,  //第四行
 
+}line_number;
 void menu(line* l1)
 {
 	line* ps  = l1->next;
@@ -34,30 +45,30 @@ int main(void)
 	Key_Init();					//按键初始化
 	Timer_Init();				//中断函数初始化
 	line* l1 = line_Init();		//初始化菜单链表	
-	line_tail(l1,1,menu_light);
-	line_tail(l1,2,menu_electrical);
-	line_tail(l1,3,menu_temperature);
+	line_tail(l1,first_line,menu_light);
+	line_tail(l1,second_line,menu_electrical);
+	line_tail(l1,thirdly_line,menu_temperature);
 	
 	menu(l1);					//将菜单打印在屏幕上
 	line* pz = l1->next;		//将菜单的开关灯位付给pr
 
 	line* l2 = line_Init();		//初始化开灯的功能链表
 
-	menu_tail(l2, pz, 1, 13);	//连接功能与菜单的哨兵位
-	menu_tail_t(l2, pz, 2, 17); //创建正真的功能位，且对应的菜单位不与他的产生联系
+	menu_tail(l2, pz, first_line, menu_light_green);	//连接功能与菜单的哨兵位
+	menu_tail_t(l2, pz, second_line, menu_light_red); //创建正真的功能位，且对应的菜单位不与他的产生联系
 
 	pz = pz->next;
 
 	line* l3 = line_Init();		//初始化电机的功能链表
 
-	menu_tail(l3, pz, 1, 2);
-	menu_tail_t(l3, pz, 1, 2);
+	menu_tail(l3, pz, first_line, menu_electrical_switch);
+	menu_tail_t(l3, pz, second_line, menu_electrical_speed);
 
 	pz = pz->next;
 
 	line* l4 = line_Init();		//初始化温度的功能链表
-	menu_tail(l4, pz, 1, 3);
-	menu_tail_t(l4, pz, 1, 2);
+	menu_tail(l4, pz, first_line, 3);
+	menu_tail_t(l4, pz,second_line, 2);
 
 
 	
@@ -119,8 +130,6 @@ int main(void)
 				OLED_ShowCharsentbright(pr->data,1,pr->line,4);		//提前将菜单第一列高亮
 				KeyDeta = 0;		//将按键标志位清零防止出现反复执行的情况
 				break;
-			
-
 		}
 	}
 }
