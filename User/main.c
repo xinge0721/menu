@@ -136,6 +136,9 @@ int main(void)
 				OLED_ShowCharsentbright(pr->data,1,pr->line,4);		//提前将菜单第一列高亮
 				KeyDeta = 0;		//将按键标志位清零防止出现反复执行的情况
 				break;
+		case 4:
+			OLED_ShowCharsentbright(pr->data,4,pr->line,4);		//提前将菜单第一列高亮
+			break;
 		}
 	}
 }

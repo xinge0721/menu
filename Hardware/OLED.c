@@ -7,7 +7,7 @@
 #define OLED_W_SCL(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_6, (BitAction)(x))
 #define OLED_W_SDA(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_7, (BitAction)(x))
 
-uint8_t OLED_data ;
+uint8_t OLED_data;
 
 
 void OLED_I2C_Init(void)

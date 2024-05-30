@@ -23,8 +23,10 @@ extern uint8_t KeyFlag;
 #define Key0 PEin(4)
 #define Key1 PEin(3)
 #define Key2 PEin(2)
+#define Key3 PEin(1)
 
-#define KEY    ((Key0) && (Key1) && (Key2))//两个条件都为真时结果才为真,否则为假,我们按键只能按一个，无法同时按，人手速度没有这么快，所以始终无论哪个按键按下KEY都是0
+
+#define KEY    ((Key0) && (Key1) && (Key2) && (Key3))//两个条件都为真时结果才为真,否则为假,我们按键只能按一个，无法同时按，人手速度没有这么快，所以始终无论哪个按键按下KEY都是0
 #define KEY0_PRES 1
 #define KEY1_PRES 2
 #define KEY2_PRES 3
