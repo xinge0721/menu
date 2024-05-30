@@ -9,13 +9,11 @@ line* line_Init(void)
 	li->up = NULL;
 	return li;
 }
-mn* menu_Init(void)
+line* menu_Init(void)
 {
-	mn* li = (mn*)malloc(sizeof(mn));//创建链表哨兵位
+	line* li = (line*)malloc(sizeof(line));//创建链表哨兵位
 	li->data = li->line = 0;
-	li->next  = li;
-	li->Break = NULL;
-	li->prior = li;
+	li->next = li->up = li->prior = li;
 	return li;
 }
 
@@ -31,14 +29,14 @@ void line_tail(line* li, int x, int y)
 	li->prior = (li->prior)->next;
 }
 
-void menu_tail(mn* pr,line* li, int x, int y)
+void menu_tail(line* pr,line* li, int x, int y)
 {
-	mn* ps = (mn*)malloc(sizeof(mn));
+	line* ps = (line*)malloc(sizeof(line));
 	ps->line = y;
 	ps->data = x;
 
-	ps->Break = li;
-	li->up = ps;
+	ps->up = li;
+ 	li->up = ps;
 
 	ps->prior = pr->prior;
 	ps->next = (pr->prior)->next;
@@ -46,3 +44,15 @@ void menu_tail(mn* pr,line* li, int x, int y)
 	pr->prior = (pr->prior)->next;
 }
 
+void menu_tail_t(line* pr, line* li, int x, int y)
+{
+	line* ps = (line*)malloc(sizeof(line));
+	ps->line = y;
+	ps->data = x;
+
+	ps->up = li;
+	ps->prior = pr->prior;
+	ps->next = (pr->prior)->next;
+	(pr->prior)->next = ps;
+	pr->prior = (pr->prior)->next;
+}

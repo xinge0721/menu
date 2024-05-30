@@ -3,4 +3,4 @@
 -I E:\Keil_v5\UV4\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 -I E:\Keil_v5\UV4\ARM\CMSIS\Include
 -D__UVISION_VERSION="514" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER
--o .\objects\lian2.o --omf_browse .\objects\lian2.crf --depend .\objects\lian2.d "Hardware\lian2.c"
+-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d "User\main.c"
