@@ -67,8 +67,7 @@ int main(void)
 	pz = pz->next;
 
 	line* l4 = line_Init();		//初始化温度的功能链表
-	menu_tail(l4, pz, first_line, 3);
-	menu_tail_t(l4, pz,second_line, 2);
+	menu_tail(l4, pz, first_line, 29);
 
 
 	

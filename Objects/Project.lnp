@@ -31,6 +31,7 @@
 ".\objects\key.o"
 ".\objects\oled.o"
 ".\objects\lian2.o"
+".\objects\oled_font.o"
 ".\objects\main.o"
 ".\objects\stm32f10x_it.o"
 --library_type=microlib --strict --scatter ".\Objects\Project.sct"
