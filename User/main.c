@@ -119,10 +119,16 @@ int main(void)
 			KeyDeta = 0;
 			break;
 		case 3:					//界面切换
-			if(!swap)
+			if(!swap)		
+			{
 				pt = (pr->up) -> prior;
+				swap++;
+			}
 			else
+			{
 				pt = l1;
+				swap--;
+			}
 			
 				pr = pr->up;		//将转换指针付给pr，则此时pr将指向功能菜单，反之亦然
 				OLED_Clear();		//清空屏幕防止菜单界面或者功能界面互相干扰
