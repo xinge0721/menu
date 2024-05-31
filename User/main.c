@@ -167,8 +167,10 @@ int main(void)
 
 
 }
-void TIM2_IRQHandler(void)
-{	if (TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)//1ms
+
+void TIM4_IRQHandler(void)
+{
+	if (TIM_GetITStatus(TIM4, TIM_IT_Update) == SET)//1ms
 	{
 		Key_list++;
 		if(Key_list == 10)
@@ -176,7 +178,7 @@ void TIM2_IRQHandler(void)
 			KeyDeta  = Key_Scan();
 			Key_list = 0;
 		}
-		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+		TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
 	}
 }
 
