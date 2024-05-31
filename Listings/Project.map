@@ -134,6 +134,21 @@ Section Cross References
     lian2.o(i.menu_Init) refers to malloc.o(i.malloc) for malloc
     lian2.o(i.menu_tail) refers to malloc.o(i.malloc) for malloc
     lian2.o(i.menu_tail_t) refers to malloc.o(i.malloc) for malloc
+    pwm.o(i.PWM_Init) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd) for RCC_APB1PeriphClockCmd
+    pwm.o(i.PWM_Init) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    pwm.o(i.PWM_Init) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    pwm.o(i.PWM_Init) refers to stm32f10x_tim.o(i.TIM_InternalClockConfig) for TIM_InternalClockConfig
+    pwm.o(i.PWM_Init) refers to stm32f10x_tim.o(i.TIM_TimeBaseInit) for TIM_TimeBaseInit
+    pwm.o(i.PWM_Init) refers to stm32f10x_tim.o(i.TIM_OCStructInit) for TIM_OCStructInit
+    pwm.o(i.PWM_Init) refers to stm32f10x_tim.o(i.TIM_OC2Init) for TIM_OC2Init
+    pwm.o(i.PWM_Init) refers to stm32f10x_tim.o(i.TIM_Cmd) for TIM_Cmd
+    pwm.o(i.PWM_SetCompare3) refers to stm32f10x_tim.o(i.TIM_SetCompare2) for TIM_SetCompare2
+    motor.o(i.Motor_Init) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    motor.o(i.Motor_Init) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    motor.o(i.Motor_Init) refers to pwm.o(i.PWM_Init) for PWM_Init
+    motor.o(i.Motor_SetSpeed) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    motor.o(i.Motor_SetSpeed) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    motor.o(i.Motor_SetSpeed) refers to pwm.o(i.PWM_SetCompare3) for PWM_SetCompare3
     main.o(i.TIM4_IRQHandler) refers to stm32f10x_tim.o(i.TIM_GetITStatus) for TIM_GetITStatus
     main.o(i.TIM4_IRQHandler) refers to key.o(i.Key_Scan) for Key_Scan
     main.o(i.TIM4_IRQHandler) refers to stm32f10x_tim.o(i.TIM_ClearITPendingBit) for TIM_ClearITPendingBit
@@ -679,8 +694,12 @@ Removing Unused input sections from the image.
     Removing led.o(i.LED_Init), (52 bytes).
     Removing oled.o(.data), (1 bytes).
     Removing lian2.o(i.menu_Init), (26 bytes).
+    Removing pwm.o(i.PWM_Init), (148 bytes).
+    Removing pwm.o(i.PWM_SetCompare3), (16 bytes).
+    Removing motor.o(i.Motor_Init), (44 bytes).
+    Removing motor.o(i.Motor_SetSpeed), (64 bytes).
 
-474 unused section(s) (total 18915 bytes) removed from the image.
+478 unused section(s) (total 19187 bytes) removed from the image.
 
 ==============================================================================
 
@@ -690,30 +709,32 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloc.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocra.o ABSOLUTE
     ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloca.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloc.o ABSOLUTE
     ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocr.o ABSOLUTE
     ../clib/microlib/malloc/mvars.c          0x00000000   Number         0  mvars.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
     Hardware\Key.c                           0x00000000   Number         0  key.o ABSOLUTE
     Hardware\LED.c                           0x00000000   Number         0  led.o ABSOLUTE
+    Hardware\Motor.c                         0x00000000   Number         0  motor.o ABSOLUTE
     Hardware\OLED.c                          0x00000000   Number         0  oled.o ABSOLUTE
     Hardware\OLED_Font.c                     0x00000000   Number         0  oled_font.o ABSOLUTE
+    Hardware\PWM.c                           0x00000000   Number         0  pwm.o ABSOLUTE
     Hardware\lian2.c                         0x00000000   Number         0  lian2.o ABSOLUTE
     Library\misc.c                           0x00000000   Number         0  misc.o ABSOLUTE
     Library\stm32f10x_adc.c                  0x00000000   Number         0  stm32f10x_adc.o ABSOLUTE
@@ -976,28 +997,28 @@ Memory Map of the image
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x000000ec   Data   RO            3    RESET               startup_stm32f10x_md.o
-    0x080000ec   0x00000000   Code   RO         3552  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x080000ec   0x00000004   Code   RO         3583    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x080000f0   0x00000004   Code   RO         3586    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080000f4   0x00000000   Code   RO         3588    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080000f4   0x00000000   Code   RO         3590    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080000f4   0x00000008   Code   RO         3591    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080000fc   0x00000000   Code   RO         3593    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x080000fc   0x00000000   Code   RO         3595    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x080000fc   0x00000004   Code   RO         3584    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x080000ec   0x00000000   Code   RO         3591  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x080000ec   0x00000004   Code   RO         3622    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x080000f0   0x00000004   Code   RO         3625    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080000f4   0x00000000   Code   RO         3627    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080000f4   0x00000000   Code   RO         3629    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080000f4   0x00000008   Code   RO         3630    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080000fc   0x00000000   Code   RO         3632    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x080000fc   0x00000000   Code   RO         3634    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x080000fc   0x00000004   Code   RO         3623    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x08000100   0x00000024   Code   RO            4    .text               startup_stm32f10x_md.o
-    0x08000124   0x00000024   Code   RO         3603    .text               mc_w.l(init.o)
-    0x08000148   0x00000004   Code   RO         3489    i.BusFault_Handler  stm32f10x_it.o
-    0x0800014c   0x00000002   Code   RO         3490    i.DebugMon_Handler  stm32f10x_it.o
+    0x08000124   0x00000024   Code   RO         3642    .text               mc_w.l(init.o)
+    0x08000148   0x00000004   Code   RO         3528    i.BusFault_Handler  stm32f10x_it.o
+    0x0800014c   0x00000002   Code   RO         3529    i.DebugMon_Handler  stm32f10x_it.o
     0x0800014e   0x00000018   Code   RO         3196    i.Delay_ms          delay.o
     0x08000166   0x0000002e   Code   RO         3198    i.Delay_us          delay.o
     0x08000194   0x00000116   Code   RO         1347    i.GPIO_Init         stm32f10x_gpio.o
     0x080002aa   0x0000000a   Code   RO         1358    i.GPIO_WriteBit     stm32f10x_gpio.o
-    0x080002b4   0x00000004   Code   RO         3491    i.HardFault_Handler  stm32f10x_it.o
+    0x080002b4   0x00000004   Code   RO         3530    i.HardFault_Handler  stm32f10x_it.o
     0x080002b8   0x00000050   Code   RO         3280    i.Key_Init          key.o
     0x08000308   0x000000dc   Code   RO         3281    i.Key_Scan          key.o
-    0x080003e4   0x00000004   Code   RO         3492    i.MemManage_Handler  stm32f10x_it.o
-    0x080003e8   0x00000002   Code   RO         3493    i.NMI_Handler       stm32f10x_it.o
+    0x080003e4   0x00000004   Code   RO         3531    i.MemManage_Handler  stm32f10x_it.o
+    0x080003e8   0x00000002   Code   RO         3532    i.NMI_Handler       stm32f10x_it.o
     0x080003ea   0x00000002   PAD
     0x080003ec   0x00000070   Code   RO          137    i.NVIC_Init         misc.o
     0x0800045c   0x00000014   Code   RO          138    i.NVIC_PriorityGroupConfig  misc.o
@@ -1014,17 +1035,17 @@ Memory Map of the image
     0x08000780   0x0000002e   Code   RO         3317    i.OLED_ShowCharsent  oled.o
     0x080007ae   0x0000002e   Code   RO         3318    i.OLED_ShowCharsentbright  oled.o
     0x080007dc   0x00000022   Code   RO         3319    i.OLED_WriteCommand  oled.o
-    0x080007fe   0x00000002   Code   RO         3494    i.PendSV_Handler    stm32f10x_it.o
+    0x080007fe   0x00000002   Code   RO         3533    i.PendSV_Handler    stm32f10x_it.o
     0x08000800   0x00000020   Code   RO         1775    i.RCC_APB1PeriphClockCmd  stm32f10x_rcc.o
     0x08000820   0x00000020   Code   RO         1777    i.RCC_APB2PeriphClockCmd  stm32f10x_rcc.o
-    0x08000840   0x00000002   Code   RO         3495    i.SVC_Handler       stm32f10x_it.o
+    0x08000840   0x00000002   Code   RO         3534    i.SVC_Handler       stm32f10x_it.o
     0x08000842   0x00000008   Code   RO           24    i.SetSysClock       system_stm32f10x.o
     0x0800084a   0x00000002   PAD
     0x0800084c   0x000000e0   Code   RO           25    i.SetSysClockTo72   system_stm32f10x.o
-    0x0800092c   0x00000002   Code   RO         3496    i.SysTick_Handler   stm32f10x_it.o
+    0x0800092c   0x00000002   Code   RO         3535    i.SysTick_Handler   stm32f10x_it.o
     0x0800092e   0x00000002   PAD
     0x08000930   0x00000060   Code   RO           27    i.SystemInit        system_stm32f10x.o
-    0x08000990   0x00000044   Code   RO         3446    i.TIM4_IRQHandler   main.o
+    0x08000990   0x00000044   Code   RO         3485    i.TIM4_IRQHandler   main.o
     0x080009d4   0x00000006   Code   RO         2415    i.TIM_ClearFlag     stm32f10x_tim.o
     0x080009da   0x00000006   Code   RO         2416    i.TIM_ClearITPendingBit  stm32f10x_tim.o
     0x080009e0   0x00000018   Code   RO         2421    i.TIM_Cmd           stm32f10x_tim.o
@@ -1032,21 +1053,21 @@ Memory Map of the image
     0x08000a1a   0x00000012   Code   RO         2446    i.TIM_ITConfig      stm32f10x_tim.o
     0x08000a2c   0x000000a4   Code   RO         2492    i.TIM_TimeBaseInit  stm32f10x_tim.o
     0x08000ad0   0x00000078   Code   RO         3220    i.Timer_Init        timer.o
-    0x08000b48   0x00000004   Code   RO         3497    i.UsageFault_Handler  stm32f10x_it.o
-    0x08000b4c   0x0000000e   Code   RO         3607    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x08000b5a   0x00000002   Code   RO         3608    i.__scatterload_null  mc_w.l(handlers.o)
-    0x08000b5c   0x0000000e   Code   RO         3609    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08000b48   0x00000004   Code   RO         3536    i.UsageFault_Handler  stm32f10x_it.o
+    0x08000b4c   0x0000000e   Code   RO         3646    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08000b5a   0x00000002   Code   RO         3647    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08000b5c   0x0000000e   Code   RO         3648    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x08000b6a   0x00000016   Code   RO         3393    i.line_Init         lian2.o
     0x08000b80   0x00000032   Code   RO         3394    i.line_tail         lian2.o
     0x08000bb2   0x00000002   PAD
-    0x08000bb4   0x0000021c   Code   RO         3447    i.main              main.o
-    0x08000dd0   0x0000006c   Code   RO         3556    i.malloc            mc_w.l(malloc.o)
-    0x08000e3c   0x0000001c   Code   RO         3448    i.menu              main.o
+    0x08000bb4   0x0000021c   Code   RO         3486    i.main              main.o
+    0x08000dd0   0x0000006c   Code   RO         3595    i.malloc            mc_w.l(malloc.o)
+    0x08000e3c   0x0000001c   Code   RO         3487    i.menu              main.o
     0x08000e58   0x00000036   Code   RO         3396    i.menu_tail         lian2.o
     0x08000e8e   0x00000034   Code   RO         3397    i.menu_tail_t       lian2.o
     0x08000ec2   0x00000002   PAD
     0x08000ec4   0x00001500   Data   RO         3439    .constdata          oled_font.o
-    0x080023c4   0x00000020   Data   RO         3605    Region$$Table       anon$$obj.o
+    0x080023c4   0x00000020   Data   RO         3644    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00000618, Max: 0x00005000, ABSOLUTE)
@@ -1054,10 +1075,10 @@ Memory Map of the image
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   0x00000002   Data   RW         3282    .data               key.o
-    0x20000002   0x00000007   Data   RW         3449    .data               main.o
+    0x20000002   0x00000007   Data   RW         3488    .data               main.o
     0x20000009   0x00000003   PAD
-    0x2000000c   0x00000004   Data   RW         3601    .data               mc_w.l(mvars.o)
-    0x20000010   0x00000004   Data   RW         3602    .data               mc_w.l(mvars.o)
+    0x2000000c   0x00000004   Data   RW         3640    .data               mc_w.l(mvars.o)
+    0x20000010   0x00000004   Data   RW         3641    .data               mc_w.l(mvars.o)
     0x20000014   0x00000004   PAD
     0x20000018   0x00000200   Zero   RW            2    HEAP                startup_stm32f10x_md.o
     0x20000218   0x00000400   Zero   RW            1    STACK               startup_stm32f10x_md.o
