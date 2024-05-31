@@ -1,5 +1,10 @@
-#include "stm32f10x.h"
-// Device header
+#include "stm32f10x.h"                  // Device header
+
+/**
+  * 函    数：PWM初始化
+  * 参    数：无
+  * 返 回 值：无
+  */
 void PWM_Init(void)
 {
 	/*开启时钟*/
@@ -52,4 +57,5 @@ void PWM_SetCompare3(uint16_t Compare)
 {
 	TIM_SetCompare3(TIM2, Compare);		//设置CCR3的值
 }
+
 

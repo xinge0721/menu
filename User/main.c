@@ -10,7 +10,8 @@
 
 uint8_t Key_list,KeyDeta,swap,speed;		//按键标志位
 uint8_t mood_work = 1,mood_menu = 1;  		//模式标志位
-uint8_t noot,electrical_speed;
+uint8_t noot;
+int electrical_speed;
 typedef enum
 {									//各个字符对应的行号
 	menu_light = 1,				 	//亮灯灭灯
@@ -196,7 +197,7 @@ int main(void)
 					{
 						electrical_speed = electrical_speed + (speed*25);
 						if(electrical_speed > 100)
-							electrical_speed -= 100;
+							electrical_speed = -200;
 						Motor_SetSpeed(electrical_speed);
 					}					
 					speed = 0;
