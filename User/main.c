@@ -9,7 +9,7 @@
 
 
 uint8_t Key_list,KeyDeta,swap,speed;		//按键标志位
-uint8_t mood_work,mood_menu;  				//模式标志位
+uint8_t mood_work = 1,mood_menu = 1;  				//模式标志位
 typedef enum
 {									//各个字符对应的行号
 	menu_light = 1,				 	//亮灯灭灯
@@ -39,6 +39,8 @@ void menu(line* l1)
 	}
 }
 uint8_t add;
+
+
 
 int main(void)
 {
@@ -158,23 +160,26 @@ int main(void)
 			case 4:
 				if(swap)
 				{
-					if(speed == 100)
+					if(speed == 4)
 						speed = 0;
-					speed += 25;
+					speed ++;
 				}
-		break;
+				Delay_ms(100);							//暂停一会，以防出错
+				KeyDeta = 0;		//将按键标志位清零防止出现反复执行的情况
+			break;
 		}
 			if(swap == 1)
 			{
-				if(mood_menu == 1)
+				if(mood_menu == 1 &&  speed != 0)
 				{
-					if(mood_work == 1 && speed != 0)
+					if(mood_work == 1)
 					{
 						LED1_Turn();
+						Delay_ms(100);
 					}
-					else if(mood_work == 2 && speed != 0)
+					else if(mood_work == 2)
 					{
-						LED1_Turn();
+						LED2_Turn();
 					}
 					speed = 0;
 				}
