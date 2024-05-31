@@ -5,11 +5,12 @@
 #include "OLED.h"
 #include "Timer.h"
 #include "lian2.h"
-
+#include "Motor.h"
 
 
 uint8_t Key_list,KeyDeta,swap,speed;		//按键标志位
-uint8_t mood_work = 1,mood_menu = 1;  				//模式标志位
+uint8_t mood_work = 1,mood_menu = 1;  		//模式标志位
+uint8_t noot,electrical_speed;
 typedef enum
 {									//各个字符对应的行号
 	menu_light = 1,				 	//亮灯灭灯
@@ -48,7 +49,7 @@ int main(void)
 	Key_Init();					//按键初始化
 	Timer_Init();				//中断函数初始化
 	LED_Init();					//LED初始化
-	
+	Motor_Init();
 	
 	line* l1 = line_Init();		//初始化菜单链表	
 	line_tail(l1,first_line,menu_light);
@@ -175,6 +176,7 @@ int main(void)
 					if(mood_work == 1)
 					{
 						LED1_Turn();
+						
 						Delay_ms(100);
 					}
 					else if(mood_work == 2)
@@ -183,15 +185,25 @@ int main(void)
 					}
 					speed = 0;
 				}
-				else if (mood_menu == 2)
+				else if (mood_menu == 2 &&  speed != 0)
 				{
-					;
+					if(mood_work == 1)
+					{
+						noot = ~noot;
+						Delay_ms(100);
+					}
+					if(mood_work == 2 && noot != 0)
+					{
+						electrical_speed = electrical_speed + (speed*25);
+						if(electrical_speed > 100)
+							electrical_speed -= 100;
+						Motor_SetSpeed(electrical_speed);
+					}					
+					speed = 0;
+
 				}
 			}
 	}
-	
-
-
 }
 
 void TIM4_IRQHandler(void)
@@ -207,4 +219,5 @@ void TIM4_IRQHandler(void)
 		TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
 	}
 }
+
 

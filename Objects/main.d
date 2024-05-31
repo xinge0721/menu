@@ -36,3 +36,4 @@
 .\objects\main.o: .\Hardware\lian2.h
 .\objects\main.o: E:\Keil_v5\UV4\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: E:\Keil_v5\UV4\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\main.o: .\Hardware\Motor.h
