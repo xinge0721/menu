@@ -16,7 +16,7 @@ void Key_Init(void)
 	
 	GPIO_Init(GPIOE,&GPIO_InitStruct);
 	
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
 	
 	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_IPU;
 	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_1;
